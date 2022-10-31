@@ -32,6 +32,8 @@ int ec_public_key_memcmp(const ec_public_key *key1, const ec_public_key *key2);
  */
 int ec_public_key_serialize(signal_buffer **buffer, const ec_public_key *key);
 
+int ec_public_key_duplicate(ec_public_key **dst, const ec_public_key *src);
+
 void ec_public_key_destroy(signal_type_base *type);
 
 int curve_decode_private_point(ec_private_key **private_key, const uint8_t *key_data, size_t key_len, signal_context *global_context);

@@ -151,6 +151,19 @@ int ec_public_key_serialize_protobuf(ProtobufCBinaryData *buffer, const ec_publi
     return 0;
 }
 
+int ec_public_key_duplicate(ec_public_key **dst, const ec_public_key *src)
+{
+    assert(src);
+
+    *dst = malloc(sizeof(ec_public_key));
+    if(!(*dst)) {
+        return SG_ERR_NOMEM;
+    }
+
+    memcpy(*dst, src, sizeof(ec_public_key));
+    return 0;
+}
+
 void ec_public_key_destroy(signal_type_base *type)
 {
     ec_public_key *public_key = (ec_public_key *)type;

@@ -181,7 +181,8 @@ complete:
     return result;
 }
 
-int get_sender_key_public(group_session_builder *builder, ec_public_key **public_key,
+int get_sender_key_public(group_session_builder *builder, 
+        ec_public_key **public_key,
         const signal_protocol_sender_key_name *sender_key_name)
 {
     int result = 0;
@@ -201,7 +202,10 @@ int get_sender_key_public(group_session_builder *builder, ec_public_key **public
         goto complete;
     }
 
-    *public_key = sender_key_state_get_signing_key_public(state);
+    result = ec_public_key_duplicate(public_key, sender_key_state_get_signing_key_public(state));
+    if(result < 0) {
+        goto complete;
+    }
 complete:
     SIGNAL_UNREF(record);
     return result;
