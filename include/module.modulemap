@@ -1,0 +1,4 @@
+module libsignal_protocol_c {
+    umbrella header "libsignal_protocol_c.h"
+    export *
+}
